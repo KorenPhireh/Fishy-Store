@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Steal a Brainrot</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="admin-avatar">🧠</div>
+                <h2>Brainrot Admin</h2>
+                <p>Order Management</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#orders" class="nav-item nav-active">
+                    <span class="nav-icon">📋</span>
+                    Active Orders
+                    <span class="order-badge" id="pending-count">0</span>
+                </a>
+                <a href="#completed" class="nav-item">
+                    <span class="nav-icon">✅</span>
+                    Completed
+                    <span class="order-badge" id="completed-count">0</span>
+                </a>
+                <a href="#products" class="nav-item">
+                    <span class="nav-icon">🛍️</span>
+                    Products
+                </a>
+                <a href="#stats" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    Statistics
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <strong>Admin User</strong>
+                    <span>Online</span>
+                </div>
+                <button onclick="logout()" class="logout-btn">
+                    <span class="nav-icon">🚪</span>
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="admin-main">
+            <div class="admin-header">
+                <div class="header-left">
+                    <h1>Active Orders</h1>
+                    <p>Manage customer orders and chats</p>
+                </div>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search orders..." id="search-orders">
+                        <span>🔍</span>
+                    </div>
+                    <button class="refresh-btn" onclick="loadOrders()">🔄 Refresh</button>
+                </div>
+            </div>
+
+            <!-- Orders Grid -->
+            <div class="orders-grid" id="orders-grid">
+                <!-- Orders will be loaded here dynamically -->
+                <div class="no-orders" id="no-orders">
+                    <div class="no-orders-icon">📦</div>
+                    <h3>No Active Orders</h3>
+                    <p>When customers place orders, they'll appear here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Interface (Hidden by default) -->
+    <div id="chat-interface" class="chat-interface">
+        <div class="chat-header">
+            <div class="chat-customer-info">
+                <div class="customer-avatar">👤</div>
+                <div>
+                    <h3 id="chat-customer-name">Customer Name</h3>
+                    <p id="chat-order-info">Order #000 • $0.00</p>
+                </div>
+            </div>
+            <div class="chat-actions">
+                <button class="action-btn" title="Mark as complete" onclick="completeCurrentOrder()">✅ Complete</button>
+                <button class="action-btn" title="Close chat" onclick="closeChat()">❌ Close</button>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chat-messages">
+            <div class="welcome-message">
+                <div class="message system">
+                    <p>💬 Chat started. You can now communicate with the customer.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Type a message..." maxlength="500">
+                <button onclick="sendMessage()" class="send-btn">Send</button>
+            </div>
+            <div class="chat-tips">
+                <span>💡 Press Enter to send • Messages are saved automatically</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
